@@ -1,0 +1,49 @@
+<!-- Not fully working: can only seem to get the tab feature to work on the first tab. Does not fire for the others. -->
+
+<tab-panel>
+    <div data-tabname="one">Tab one</div>
+    <div data-tabname="two">Tab two</div>
+    <div data-tabname="three">Tab three</div>
+</tab-panel>
+<script>
+    function asTabs(node) {
+        var tabs = [];
+        for (var i = 0; i < node.children.length; i++) {
+            tabs.push(node.children[i]);
+        }
+
+        var panel = document.querySelector("tab-panel");
+        var tabList = document.createElement("div");
+        tabs.forEach(function (tab) {
+            var button = document.createElement("button");
+            button.textContent = tab.getAttribute("data-tabname");
+            button.addEventListener("click", function () {
+                selectTab(i);
+            });
+
+            tabList.appendChild(button);
+        });
+
+        node.insertBefore(tabList, node.firstChild);
+
+        function selectTab(idx) {
+            tabs.forEach(function (tab, i) {
+                if (i == idx) {
+                    tab.style.display = "";
+                } else {
+                    tab.style.display = "none";
+                }
+            });
+            for (var i = 0; i < tabList.childNodes.length; i++) {
+                if (i == idx) {
+                    tabList.childNodes[i].style.background = "blue";
+                } else {
+                    tabList.childNodes[i].style.background = "";
+                }
+            }
+        }
+        selectTab(0);
+    }
+
+    asTabs(document.querySelector("tab-panel"));
+</script>

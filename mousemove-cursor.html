@@ -1,0 +1,44 @@
+<style>
+    .trail {
+        /* className for the trail elements */
+        position: absolute;
+        height: 6px;
+        width: 6px;
+        border-radius: 3px;
+        background: teal;
+    }
+
+    body {
+        height: 300px;
+    }
+</style>
+<script>
+
+    /* Make less repetitive! */
+    let trail1 = document.createElement("div");
+    trail1.className = "trail";
+
+    let trail2 = document.createElement("div");
+    trail2.className = "trail";
+    trail2.style.background = "red";
+
+    let trail3 = document.createElement("div");
+    trail3.className = "trail";
+    trail3.style.background = "green";
+
+    document.addEventListener("mousemove", event => {
+        trail1.style.left = (event.pageX - 4) + "px";
+        trail1.style.top = (event.pageY - 4) + "px";
+
+        trail2.style.left = (parseInt(trail1.style.left) - 6) + "px";
+        trail2.style.top = (parseInt(trail1.style.top) - 6) + "px";
+
+        trail3.style.left = (parseInt(trail1.style.left) - 12) + "px";
+        trail3.style.top = (parseInt(trail1.style.top) - 12) + "px";
+
+
+        document.body.appendChild(trail1);
+        document.body.appendChild(trail2);
+        document.body.appendChild(trail3);
+    });
+</script>

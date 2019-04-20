@@ -1,0 +1,30 @@
+<p>🎈</p>
+
+<script>
+    // Your code here
+    let para = document.querySelector("p");
+    para.style.fontSize = "30px";
+
+    function updateSize(e) {
+        let size = parseInt(para.style.fontSize);
+        if (e.key == "ArrowUp"  && size > 100) {
+            para.innerHTML = "💥 "
+            document.removeEventListener("keydown", updateSize);
+            e.preventDefault();
+        }else if (e.key == "ArrowUp") {
+            let newSize = size + (size * 0.1) + "px";
+            para.style.fontSize = newSize;
+            e.preventDefault();
+        } else if (e.key == "ArrowDown") {
+            let newSize = size - (size * 0.1) + "px";
+            para.style.fontSize = newSize;
+            e.preventDefault();
+        } 
+    }
+
+    document.addEventListener("keydown", updateSize);
+
+
+        
+
+</script>
